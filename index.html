@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Brand Voice AI</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-box {
+      width: 360px;
+      background: #020617;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background: #6366f1;
+      color: white;
+      cursor: pointer;
+    }
+    p {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-box">
+  <h2>Brand Voice AI</h2>
+  <input id="msg" placeholder="Type your message..." />
+  <button onclick="sendMsg()">Send</button>
+  <p id="reply"></p>
+</div>
+
+<script>
+async function sendMsg() {
+  const message = document.getElementById("msg").value;
+
+  const res = await fetch("/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message })
+  });
+
+  const data = await res.json();
+  document.getElementById("reply").innerText = data.reply;
+}
+</script>
+
+</body>
+</html>
