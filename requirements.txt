@@ -1,4 +1,4 @@
-flask
-python-dotenv
+streamlit
 requests
-gunicorn
+
+
